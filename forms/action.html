@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Form action</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <style type="text/css">
+     
+     .tall {
+       height: 5000px
+     }
+  </style>
+
+  <script type="text/javascript">
+
+    function submit_pressed(one_two_or_three) {
+
+      document.nameOfTheForm.action = "#target_" + one_two_or_three; 
+
+      return true;
+    }
+
+
+
+  </script>
+
+</head>
+<body onload="init();">
+
+
+   <h1 id="choose">Choose</h1>
+
+   
+    <form name="nameOfTheForm">
+
+      <input type="submit" value="Target One"   onClick="return submit_pressed('one'  );"><br>
+      <input type="submit" value="Target Two"   onClick="return submit_pressed('two'  );"><br>
+      <input type="submit" value="Target Three" onClick="return submit_pressed('three');"><br>
+
+    </form>
+
+   <div class="tall"></div>
+
+   
+   <h1 id="target_one"  >Target one  </h1><a href='#choose'>Choose again</a><div class="tall"></div>
+   <h1 id="target_two"  >Target two  </h1><a href='#choose'>Choose again</a><div class="tall"></div>
+   <h1 id="target_three">Target three</h1><a href="#choose">Choose again</a><div class="tall"></div>
+
+</body>
+</html>
+
