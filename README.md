@@ -31,6 +31,8 @@ Investigating the Browser Object Model (BOM)
     +---navigator
     |
     +---screen
+    +
+    +---console
 
 For the `document` element and its element beneath see the [Document Object Model](https://github.com/ReneNyffenegger/about-Document-Object-Model).
 
