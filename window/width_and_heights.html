@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head><title>window.scrollTo</title>
+
+
+<style type='text/css'> 
+	  body   { background-color: #000510; width:2000px; height:2000px;padding:0;margin:0}
+    div.e  {border-left:#bbffff 1px solid; border-top:#bbffff 1px solid; width:80px; height:80px;color:#ffbbff; position:absolute}
+</style>
+
+<script type="text/javascript">
+
+
+   var canvas;
+   var context_2d;
+
+   onload = function() {try{
+      
+      canvas = document.getElementById('canvas');
+      context_2d = canvas.getContext('2d');
+
+      context_2d.lineCap     = 'butt';
+
+      drawGrid();
+
+      printInner();
+
+
+   } catch(e) {alert(e);}}
+
+   onresize=function() { printInner(); }
+   onscroll=function() { printInner(); }
+
+//
+// Unfortunatly, there is no move event
+///  (http://stackoverflow.com/questions/4319487/detecting-if-the-browser-window-is-moved-with-javascript)
+//
+// onmove  =function() { printInner(); }
+
+   function drawGrid() {
+      for (var i= 10; i<2000; i+= 10) { line_(i, 1, '#333333'); }
+      for (var i= 50; i<2000; i+= 50) { line_(i, 1, '#555555'); }
+      for (var i=100; i<2000; i+=100) { line_(i, 1, '#777777'); }
+
+   }
+
+   function line_(q,width,color) {
+
+       context_2d.lineWidth   =  width;
+       context_2d.strokeStyle =  color;//'#0000ff';
+
+       context_2d.beginPath();
+       context_2d.moveTo(q,   0);
+       context_2d.lineTo(q,2000);
+       context_2d.stroke();
+
+       context_2d.beginPath();
+       context_2d.moveTo(0    ,q);
+       context_2d.lineTo(20000,q);
+       context_2d.stroke();
+
+   }
+
+   function printInner() {
+
+     document.getElementById('innerWidth' ).innerHTML = window.innerWidth;
+     document.getElementById('innerHeight').innerHTML = window.innerHeight;
+
+     document.getElementById('outerWidth' ).innerHTML = window.outerWidth;
+     document.getElementById('outerHeight').innerHTML = window.outerHeight;
+
+     document.getElementById('clientWidth' ).innerHTML = document.body.clientWidth;
+     document.getElementById('clientHeight').innerHTML = document.body.clientHeight;
+
+     document.getElementById('offsetWidth' ).innerHTML = document.body.offsetWidth;
+     document.getElementById('offsetHeight').innerHTML = document.body.offsetHeight;
+
+     document.getElementById('screenWidth' ).innerHTML = window.screen.width;
+     document.getElementById('screenHeight').innerHTML = window.screen.height;
+
+     document.getElementById('availWidth' ).innerHTML = window.screen.availWidth;
+     document.getElementById('availHeight').innerHTML = window.screen.availHeight;
+
+     document.getElementById('pageXOffset').innerHTML = window.pageXOffset;
+     document.getElementById('pageYOffset').innerHTML = window.pageYOffset;
+
+     document.getElementById('screenX'    ).innerHTML = window.screenX; // TODO: IE seems to want screenTop / screenLeft
+     document.getElementById('screenY'    ).innerHTML = window.screenY;
+
+   }
+
+
+</script>
+
+
+</head>
+
+<body>
+
+  <canvas id='canvas' width='2000' height='2000' style='margin:0;padding:0'>
+  </canvas>
+
+  <table style='position:fixed;left:100px;top:100px;background-color:#bbbb22'>
+
+    <tr><td>           </td><td>...Width</td><td>...Height</td></tr>
+    <tr><td>inner      </td><td id='innerWidth' ></td><td id='innerHeight' ></td></tr>
+    <tr><td>outer      </td><td id='outerWidth' ></td><td id='outerHeight' ></td></tr>
+    <tr><td>client     </td><td id='clientWidth'></td><td id='clientHeight'></td></tr>
+    <tr><td>offset     </td><td id='offsetWidth'></td><td id='offsetHeight'></td></tr>
+    <tr><td>screen     </td><td id='screenWidth'></td><td id='screenHeight'></td></tr>
+    <tr><td>avail      </td><td id='availWidth' ></td><td id='availHeight' ></td></tr>
+    <tr><td>           </td><td>...X    </td><td>...Y</td></tr>
+    <tr><td>pageOffset </td><td id='pageXOffset' ></td><td id='pageYOffset'></td></tr>
+    <tr><td>screen     </td><td id='screenX'     ></td><td id='screenY'    ></td></tr>
+
+  </table>
+  
+
+</body>
+</html>
