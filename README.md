@@ -1,5 +1,4 @@
-Browser-Object-Model
-====================
+# Browser-Object-Model
 
 Investigating the Browser Object Model (BOM)
 
@@ -24,6 +23,8 @@ Investigating the Browser Object Model (BOM)
     +---navigator
     |
     +---screen
+
+For the `document` element and its element beneath see the [Document Object Model](https://github.com/ReneNyffenegger/about-Document-Object-Model).
 
 
 ## window
