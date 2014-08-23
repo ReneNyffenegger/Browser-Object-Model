@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>requestAnimationFrame</title>
+
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+
+  <script type="text/javascript">
+
+    var counter;
+    var time_start;
+    var start_a;
+    var stop_a;
+    var counter_e;
+    var frame_e;
+    var msec_f_e;
+    var running = 0;
+    var last_request_id;
+    var slider = {wait_ms: 0};
+
+    function frame(timestamp) {
+      last_request_id = requestAnimationFrame(frame);
+
+      if (counter === undefined) {
+         counter = 0;
+         time_start = new Date().getTime();
+      }
+      else {
+        counter ++;
+        update_stats();
+
+        var now = new Date().getTime();
+        while (now + slider.wait_ms >= new Date().getTime()) {
+          ;
+        }
+      }
+    }
+
+    function start() {
+      if (running) return;
+      running=1;
+
+      stop_a .style.color='#f00';
+      start_a.style.color='#999';
+
+      counter = undefined;
+      time_start = undefined; // new Date().getTime();
+      requestAnimationFrame(frame);
+    }
+
+    function stop() {
+      if (!running) return;
+
+      cancelAnimationFrame(last_request_id);
+
+      running=0;
+      stop_a .style.color='#999';
+      start_a.style.color='#f00';
+
+      update_stats();
+    }
+
+    function main() {
+      start_a   = document.getElementById('start'  );
+      stop_a    = document.getElementById('stop'   );
+      counter_e = document.getElementById('counter');
+      frame_e   = document.getElementById('frame_s');
+      msec_f_e  = document.getElementById('msec_f' );
+
+      stop_a .style.color='#999';
+      start_a.style.color='#f00';
+
+      var dat_gui=new dat.GUI();
+      var dat_wait = dat_gui.add(slider, 'wait_ms', 0, 1000);
+    }
+
+    function update_stats() {
+      var time_diff = new Date().getTime() - time_start;
+
+      counter_e.innerHTML = counter;
+      frame_e  .innerHTML = Math.round(counter / time_diff * 1000 * 100) / 100;
+      msec_f_e .innerHTML = Math.round(time_diff / counter        * 100) / 100;
+    }
+
+    
+  </script>
+</head>
+<body onload='main();'>
+
+  <a id='start' href='#' onclick='start() ;return false;'>Start</a><br>
+  <a id='stop'  href='#' onclick='stop () ;return false;'>Stop </a>
+
+  <table>
+    <tr><td>Frame counter:     </td><td id='counter'></td></tr>
+    <tr><td>Avg frames/sec:    </td><td id='frame_s'></td></tr>
+    <tr><td>Avg millisec/frame:</td><td id='msec_f' ></td></tr>
+  </table>
+
+</body>
+</html>
