@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>window.toString</title>
+</head>
+
+<script type="text/javascript">
+  function main() {
+     var out  = document.getElementById('out');
+
+     out.innerHTML = window.toString(); // [object Window]
+  }
+
+</script>
+<body onload='main()'>
+
+  <div id='out'>
+  </div>
+
+</body>
+</html>
