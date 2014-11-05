@@ -7,8 +7,17 @@
 <script type="text/JavaScript">
 <!--
 
-function init() {
+function main() {
+  o = new Object();
+
+  o.foo = 'one';
+  o.bar = 'two';
+  o.baz = 'three';
   
+  console.log('foo bar'); // "foo bar"
+  console.log(o);         // Object { foo: "one", bar: "two", baz: "three" }
+
+
   console.log('Writing the numbers 0 .. 100 in intervals of 10');
   for (var i=0; i<=100; i+=10) {
     console.log(i);
@@ -19,7 +28,7 @@ function init() {
 
 </script>
 </head>
-<body onload='init()'>
+<body onload='main()'>
 
 
 </body>
