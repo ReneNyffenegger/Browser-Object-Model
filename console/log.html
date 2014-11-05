@@ -7,6 +7,13 @@
 <script type="text/JavaScript">
 <!--
 
+
+
+// http://stackoverflow.com/a/13240395
+function toHex(d) {
+  return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase();
+}
+
 function main() {
   o = new Object();
 
@@ -18,9 +25,12 @@ function main() {
   console.log(o);         // Object { foo: "one", bar: "two", baz: "three" }
 
 
-  console.log('Writing the numbers 0 .. 100 in intervals of 10');
-  for (var i=0; i<=100; i+=10) {
-    console.log(i);
+  console.log('Writing the numbers 0 .. 100 in intervals of 10, using the \%c modifier to change appearance of logged text');
+  for (var i=0; i<=255; i+=10) {
+    console.log(
+      '%c' + i, 
+      'color: #' + toHex(i)+toHex(i)+toHex(i) + ';' +
+      'font-size: ' + (10+Math.round(i/10)) + 'px');
   }
 }
 
