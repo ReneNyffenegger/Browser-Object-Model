@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta charset="utf8">
+
+<title>document.addEventListener</title>
+
+<script type="text/JavaScript">
+<!--
+
+
+var out;
+
+
+function p(txt) {
+
+   out.innerHTML += txt + '<br>';j
+}
+
+function main() {
+
+  out = document.getElementById('out');
+
+
+  document.addEventListener('keydown',
+      function(ev) {
+
+        p('keydown, ev.keyCode = ' + ev.keyCode);
+       
+        if ( ev.keyCode ===  9 || // Tab
+             ev.keyCode === 32 || // Space
+             ev.keyCode === 33 || // Pg Up
+             ev.keyCode === 34 || // Pg Down
+             ev.keyCode === 37 || // Left
+             ev.keyCode === 38 || // Up
+             ev.keyCode === 39 || // Right
+             ev.keyCode === 40    // Down
+           )
+          {
+             ev.preventDefault();
+           }
+     }, false);
+
+  document.addEventListener('keyup',
+      function(ev) {
+
+        p('keyup, ev.keyCode = ' + ev.keyCode);
+       
+        if ( ev.keyCode ===  9 || // Tab
+             ev.keyCode === 32 || // Space
+             ev.keyCode === 33 || // Pg Up
+             ev.keyCode === 34 || // Pg Down
+             ev.keyCode === 37 || // Left
+             ev.keyCode === 38 || // Up
+             ev.keyCode === 39 || // Right
+             ev.keyCode === 40    // Down
+           ) 
+          {
+             ev.preventDefault();
+           }
+     }, false);
+
+}
+
+//-->
+
+</script>
+</head>
+<body onload='main()'>
+
+  <div id='out'>
+  </div>
+
+
+</body>
+</html>
