@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta charset="utf8">
+
+<style type='text/css'> 
+
+  div {
+
+     margin-bottom: 10px;
+     margin-left:   20px;
+     border: black solid 1px;
+     padding: 3px;
+     width: 300px;
+
+  }
+
+
+</style>
+   
+
+<title>document.querySelectorAll</title>
+
+<script type="text/JavaScript">
+
+function main() {
+
+  var matched_bar = document.querySelectorAll('[id^="bar-"]');
+  for (i in matched_bar) {
+    matched_bar[i].innerHTML += " (id='baz...')";
+  }
+
+  var matched_two = document.querySelectorAll('[id$="-two"]');
+  for (i in matched_two) {
+    matched_two[i].innerHTML += " (id='...-two')";
+  }
+
+}
+
+
+</script>
+</head>
+<body onload='main()'>
+
+  <div id='foo-one'  >foo-one  </div>
+  <div id='foo-two'  >foo-two  </div>
+  <div id='bar-one'  >bar-one  </div>
+  <div id='baz-one'  >baz-one  </div>
+  <div id='baz-two'  >baz-two  </div>
+  <div id='bar-two'  >bar-two  </div>
+  <div id='foo-three'>foo-three</div>
+  <div id='baz-three'>baz-three</div>
+  <div id='bar-three'>bar-three</div>
+
+
+</body>
+</html>
