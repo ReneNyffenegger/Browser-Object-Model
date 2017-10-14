@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+
+    http://renenyffenegger.ch/development/web/js-html/width_and_heights.html
+
+-->
 <html>
 <head><title>window.scrollTo</title>
 
@@ -14,7 +19,27 @@
    var canvas;
    var context_2d;
 
+   function toCourier() {
+
+      let nodesWithAnID = document.querySelectorAll('[id]');
+      for (let node of nodesWithAnID) {
+
+        if (node.id.match(/(Width|Height|X|Y|Offset)$/)) {
+
+          node.style.fontFamily='monospace';
+          node.style.textAlign='right';
+
+        }
+
+      }
+
+
+   }
+
    onload = function() {try{
+
+      
+      toCourier();
       
       canvas = document.getElementById('canvas');
       context_2d = canvas.getContext('2d');
@@ -28,8 +53,20 @@
 
    } catch(e) {alert(e);}}
 
-   onresize=function() { printInner(); }
-   onscroll=function() { printInner(); }
+   onresize=printInner;
+   onscroll=printInner;
+   onmousemove=function(ev) {try{
+
+     document.getElementById('eventClientX').innerHTML = ev.clientX;
+     document.getElementById('eventClientY').innerHTML = ev.clientY;
+
+     document.getElementById('eventScreenX').innerHTML = ev.screenX;
+     document.getElementById('eventScreenY').innerHTML = ev.screenY;
+
+     printInner();
+
+
+   } catch(e) {alert(e);}}
 
 //
 // Unfortunatly, there is no move event
@@ -61,25 +98,29 @@
 
    }
 
+   function print(id, val) {
+     document.getElementById(id).innerHTML = val;
+   }
+// function printXY(id, rootElem, attrib) {
+//   print(id + 'X', rootElem[attrib + 'X']);
+//   print(id + 'Y', rootElem[attrib + 'Y']);
+// }
+   function printWidthHeight(id, rootElem, attrib) {
+     print(id + 'Width' , rootElem[attrib + 'Width' ]);
+     print(id + 'Height', rootElem[attrib + 'Height']);
+   }
+
    function printInner() {
 
-     document.getElementById('innerWidth' ).innerHTML = window.innerWidth;
-     document.getElementById('innerHeight').innerHTML = window.innerHeight;
-
-     document.getElementById('outerWidth' ).innerHTML = window.outerWidth;
-     document.getElementById('outerHeight').innerHTML = window.outerHeight;
-
-     document.getElementById('clientWidth' ).innerHTML = document.body.clientWidth;
-     document.getElementById('clientHeight').innerHTML = document.body.clientHeight;
-
-     document.getElementById('offsetWidth' ).innerHTML = document.body.offsetWidth;
-     document.getElementById('offsetHeight').innerHTML = document.body.offsetHeight;
+     printWidthHeight('inner' , window       , 'inner');
+     printWidthHeight('outer' , window       , 'outer');
+     printWidthHeight('client', document.body, 'client');
+     printWidthHeight('offset', document.body, 'offset');
 
      document.getElementById('screenWidth' ).innerHTML = window.screen.width;
      document.getElementById('screenHeight').innerHTML = window.screen.height;
 
-     document.getElementById('availWidth' ).innerHTML = window.screen.availWidth;
-     document.getElementById('availHeight').innerHTML = window.screen.availHeight;
+     printWidthHeight('avail', window.screen, 'avail');
 
      document.getElementById('pageXOffset').innerHTML = window.pageXOffset;
      document.getElementById('pageYOffset').innerHTML = window.pageYOffset;
@@ -102,16 +143,21 @@
 
   <table style='position:fixed;left:100px;top:100px;background-color:#bbbb22'>
 
-    <tr><td>           </td><td>...Width</td><td>...Height</td></tr>
-    <tr><td>inner      </td><td id='innerWidth' ></td><td id='innerHeight' ></td></tr>
-    <tr><td>outer      </td><td id='outerWidth' ></td><td id='outerHeight' ></td></tr>
-    <tr><td>client     </td><td id='clientWidth'></td><td id='clientHeight'></td></tr>
-    <tr><td>offset     </td><td id='offsetWidth'></td><td id='offsetHeight'></td></tr>
-    <tr><td>screen     </td><td id='screenWidth'></td><td id='screenHeight'></td></tr>
-    <tr><td>avail      </td><td id='availWidth' ></td><td id='availHeight' ></td></tr>
-    <tr><td>           </td><td>...X    </td><td>...Y</td></tr>
-    <tr><td>pageOffset </td><td id='pageXOffset' ></td><td id='pageYOffset'></td></tr>
-    <tr><td>screen     </td><td id='screenX'     ></td><td id='screenY'    ></td></tr>
+    <tr><td>                    </td><td>...Width</td><td>...Height</td></tr>
+    <tr><td>inner               </td><td id='innerWidth'  ></td><td id='innerHeight' ></td></tr>
+    <tr><td>outer               </td><td id='outerWidth'  ></td><td id='outerHeight' ></td></tr>
+    <tr><td>client              </td><td id='clientWidth' ></td><td id='clientHeight'></td></tr>
+    <tr><td>offset              </td><td id='offsetWidth' ></td><td id='offsetHeight'></td></tr>
+    <tr><td>screen              </td><td id='screenWidth' ></td><td id='screenHeight'></td></tr>
+    <tr><td>avail               </td><td id='availWidth'  ></td><td id='availHeight' ></td></tr>
+    <tr><td>                    </td><td>...X              </td><td>...Y              </td></tr>
+    <tr><td>pageOffset          </td><td id='pageXOffset' ></td><td id='pageYOffset' ></td></tr>
+    <tr><td>screen              </td><td id='screenX'     ></td><td id='screenY'     ></td></tr>
+    <tr><td>                    </td><td><i>Mouse</i>      </td><td>                  </td></tr>
+    <tr><td>event.client...     </td><td id='eventClientX'></td><td id='eventClientY'></td></tr>
+    <tr><td>event.screen...     </td><td id='eventScreenX'></td><td id='eventScreenY'></td></tr>
+
+    <tr><td colspan=2><a href='https://github.com/ReneNyffenegger/Browser-Object-Model/blob/master/window/width_and_heights.html'>Source on Github</a></td></tr>
 
   </table>
   
