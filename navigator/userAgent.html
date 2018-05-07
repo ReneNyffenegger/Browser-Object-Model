@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+
+  https://github.com/ReneNyffenegger/Browser-Object-Model/tree/master/navigator/userAgent.html
+
+  https://renenyffenegger.ch/development/web/js-html/userAgent.html
+
+-->
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>navigator.userAgent</title>
+  <script type="text/JavaScript">
+
+    function main() {
+      ua = navigator.userAgent;
+      document.getElementById('ua').innerHTML = ua;
+
+      divMob = document.getElementById('isMobile');
+      if (ua.match(/Mobile/)) {
+        divMob.innerHTML = 'This device seems to be a <b>Mobile</b>.';
+      }
+      else {
+        divMob.innerHTML = 'This device <b>does not</b> seem to be a Mobile.';
+      }
+    }
+
+  </script>
+</head>
+<body onload='main()'>
+
+  <div id='ua'></div>
+  <p>
+  <div id='isMobile'></div>
+
+</body>
+</html>
