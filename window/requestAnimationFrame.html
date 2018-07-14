@@ -20,21 +20,26 @@
     var slider = {wait_ms: 0};
 
     function frame(timestamp) {
-      last_request_id = requestAnimationFrame(frame);
+     //
+     // requestAnimationFrame returns an id. This id can
+     // later be used in cancelAnimationFrame() to stop
+     // the animation cycle.
+     //
+        last_request_id = requestAnimationFrame(frame);
 
-      if (counter === undefined) {
-         counter = 0;
-         time_start = new Date().getTime();
-      }
-      else {
-        counter ++;
-        update_stats();
-
-        var now = new Date().getTime();
-        while (now + slider.wait_ms >= new Date().getTime()) {
-          ;
+        if (counter === undefined) {
+           counter = 0;
+           time_start = new Date().getTime();
         }
-      }
+        else {
+          counter ++;
+          update_stats();
+
+          var now = new Date().getTime();
+          while (now + slider.wait_ms >= new Date().getTime()) {
+            ;
+          }
+        }
     }
 
     function start() {
