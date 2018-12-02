@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head><title>window.scrollTo</title>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>window.scrollTo</title>
 
-
-<style type='text/css'> 
-	  body   { background-color: #002233; width:4000px; height:4000px;padding:0}
-    div.e  {border-left:#bbffff 1px solid; border-top:#bbffff 1px solid; width:80px; height:80px;color:#ffbbff; position:absolute}
+<style type='text/css'>
+   body   { background-color: #002233; width:4000px; height:4000px;padding:0}
+   div.e  {border-left:#bbffff 1px solid; border-top:#bbffff 1px solid; width:80px; height:80px;color:#ffbbff; position:absolute}
 </style>
 
 <script type="text/javascript">
 
-   function scroll() {
+   function clicked() {
 
       var to_x = document.getElementById('input_x').value;
       var to_y = document.getElementById('input_y').value;
+
+      console.log("to_x " + to_x + ", to_y = " + to_y);
 
       window.scrollTo(to_x, to_y);
 
    }
 
 </script>
-
 
 </head>
 <body>
@@ -33,11 +35,11 @@
 
          use warnings;
          use strict;
-         
+
          my $width  = 2000;
          my $height =$width;
          my $dist   = 100;
-         
+
          for (my $x = 0 ; $x < $height; $x+=$dist) {
          for (my $y = 0 ; $y < $width ; $y+=$dist) {
               print "  <div class='e' style='left:${x}px;top:${y}px'>x: $x<br>y: $y</div>\n";
@@ -448,15 +450,14 @@
 
   <div style='position:fixed;top:200px;left:300px;background-color:#ffffbb;padding:9px'>
     <table><tr><td></td><td><b>Scroll To</b></td></tr>
- 
+
     <tr><td>x:</td><td><input type='text'   id='input_x' /></td></tr>
     <tr><td>y:</td><td><input type='text'   id='input_y' /></td></tr>
 
-    <tr><td>  </td><td><input type='button' value='Go'   
-                        onclick='scroll()' /></td></tr>
+    <tr><td>  </td><td><input type='button' value='Go' onclick='clicked();' /></td></tr>
 
     </table>
-  
+
   </div>
 
 </body>
