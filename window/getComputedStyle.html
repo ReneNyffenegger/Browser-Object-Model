@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>window.getComputedStyle</title>
+
+  <script type='text/javascript'>
+
+
+    function printStyleValue(outTable, compStyle, styleName) {
+
+      var tr     = document.createElement('tr');
+      var tdName = document.createElement('td');
+      var tdVal  = document.createElement('td');
+
+      tdName.innerHTML = styleName + ':';
+      tdVal.innerHTML  = compStyle[styleName];
+
+      tr.appendChild(tdName);
+      tr.appendChild(tdVal );
+      outTable.appendChild(tr);
+
+    }
+
+    function main() {
+
+      var out       = document.getElementById('out');
+      var compStyle = window.getComputedStyle(document.body);
+
+      printStyleValue(out, compStyle, 'position');
+      printStyleValue(out, compStyle, 'top'     );
+      printStyleValue(out, compStyle, 'bottom'  );
+      printStyleValue(out, compStyle, 'left'    );
+      printStyleValue(out, compStyle, 'right'   );
+      printStyleValue(out, compStyle, 'width'   );
+      printStyleValue(out, compStyle, 'height'  );
+    }
+
+  </script>
+
+
+</head>
+<body onload='main()' style='margin: 0'>
+
+  <table id='out'></table>
+
+</body>
+</html>
