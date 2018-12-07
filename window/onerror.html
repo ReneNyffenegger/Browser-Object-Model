@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+
+  https://github.com/ReneNyffenegger/Browser-Object-Model/tree/master/window/onerror.html
+
+  https://renenyffenegger.ch/development/web/js-html/userAgent.html
+
+-->
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>window.onerror</title>
+</head>
+
+
+  <style type='text/css'>
+
+     thead tr
+           { font-weight: bold}
+
+     td    {vertical-align: top; padding: 4px}
+
+     td:nth-child(3), /* Line Number */
+     td:nth-child(4)  /* Col Number */
+           { text-align: right;}
+
+     tr    {border-bottom: 1px solid #444;}
+
+     table {border: 1px solid #000; border-collapse: collapse}
+
+  </style>
+
+  <script type='text/javascript'>
+
+    window.onerror = function(msg, url, lineNr, colNr, err) {
+
+      var tr     = document.createElement('tr');
+      var td_msg = document.createElement('td');
+      var td_url = document.createElement('td');
+      var td_lnr = document.createElement('td');
+      var td_cnr = document.createElement('td');
+//    var td_err = document.createElement('td');
+
+      td_msg.innerText = msg;
+      td_url.innerText = url;
+      td_lnr.innerText = lineNr;
+      td_cnr.innerText = colNr;
+//    td_err.innerText = err;
+
+      tr.appendChild(td_msg);
+      tr.appendChild(td_url);
+      tr.appendChild(td_lnr);
+      tr.appendChild(td_cnr);
+//    tr.appendChild(td_err);
+
+      document.getElementById('errors').appendChild(tr);
+
+      return true;
+
+    }
+
+    function main() {
+    }
+
+    function call_undefined_function() {
+
+    //
+    // Calling an undefined function causes
+    // a »Reference Error«:
+    //
+       undefined_function();
+    }
+
+    function cause_eval_error() {
+       var v = eval('4 + 5');
+       console.log('v = ' + v);
+
+       var w = eval('4 +  ');                          // SyntaxError: expected expression, got end of script
+       console.log('w = ' + w);
+    }
+
+    function throw_an_error() {
+       throw "up";
+    }
+
+    function type_error() {
+        var ary = new Array('foo', 'bar', 'baz');
+        console.log('ary.length   = ' + ary.length  );
+        console.log('ary.length() = ' + ary.length()); // TypeError: ary.length is not a function
+    }
+
+  </script>
+<body onload='main()'>
+
+
+  <a href='javascript:call_undefined_function();'>Call an undefined function</a><br>
+  <a href='javascript:cause_eval_error();'       >Cause an eval error</a>       <br>
+  <a href='javascript:throw_an_error();'         >Throw an error</a>            <br>
+  <a href='javascript:type_error();'             >Type error</a>
+
+
+  <table id='errors'>
+    <thead><tr>
+       <td>Message</td>
+       <td>Url</td>
+       <td>Line</td>
+       <td>Col</td>
+<!--   <td>Error</td> -->
+    </tr></thead>
+
+  </table>
+
+</body>
+</html>
