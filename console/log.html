@@ -5,41 +5,29 @@
 <title>console.log</title>
 
 <script type="text/JavaScript">
-<!--
 
-
-
-// http://stackoverflow.com/a/13240395
-function toHex(d) {
-  return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase();
-}
-
-function main() {
-  o = new Object();
-
-  o.foo = 'one';
-  o.bar = 'two';
-  o.baz = 'three';
+  function main() {
   
-  console.log('foo bar'); // "foo bar"
-  console.log(o);         // Object { foo: "one", bar: "two", baz: "three" }
-
-
-  console.log('Writing the numbers 0 .. 100 in intervals of 10, using the \%c modifier to change appearance of logged text');
-  for (var i=0; i<=255; i+=10) {
+    console.log('');
+    console.log('foo bar');
+  
+    obj = {x: 'eggs', y: 'why'};
+    console.log(JSON.stringify(obj));
+  
     console.log(
-      '%c' + i, 
-      'color: #' + toHex(i)+toHex(i)+toHex(i) + ';' +
-      'font-size: ' + (10+Math.round(i/10)) + 'px');
+      '%cBIG and red',
+      'color: #ff0000; font-size: 40px;'
+    );
+  
+    console.log(
+      '%cbold and blue',
+      'color: #0000ff; font-weight: bold'
+    );
   }
-}
-
-//-->
 
 </script>
 </head>
 <body onload='main()'>
-
 
 </body>
 </html>
