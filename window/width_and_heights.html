@@ -14,7 +14,7 @@
 
 
 <style type='text/css'> 
-	  body   { background-color: #000510; width:2000px; height:2000px;padding:0;margin:0}
+	  body   { background-color: #000510; width:1000px; height:1000px;padding:0;margin:0}
     div.e  {border-left:#bbffff 1px solid; border-top:#bbffff 1px solid; width:80px; height:80px;color:#ffbbff; position:absolute}
 </style>
 
@@ -67,9 +67,9 @@
 //   (https://stackoverflow.com/questions/4319487/detecting-if-the-browser-window-is-moved-with-javascript)
 
    function drawGrid() {
-      for (var i= 10; i<2000; i+= 10) { line_(i, 1, '#333333'); }
-      for (var i= 50; i<2000; i+= 50) { line_(i, 1, '#555555'); }
-      for (var i=100; i<2000; i+=100) { line_(i, 1, '#777777'); }
+      for (var i= 10; i<1000; i+= 10) { line_(i, 1, '#333333'); }
+      for (var i= 50; i<1000; i+= 50) { line_(i, 1, '#555555'); }
+      for (var i=100; i<1000; i+=100) { line_(i, 1, '#777777'); }
    }
 
    function line_(q,width,color) {
@@ -78,13 +78,13 @@
        context_2d.strokeStyle =  color;//'#0000ff';
 
        context_2d.beginPath();
-       context_2d.moveTo(q,   0);;
-       context_2d.lineTo(q,2000);
+       context_2d.moveTo(q,    0);
+       context_2d.lineTo(q, 1000);
        context_2d.stroke();
 
        context_2d.beginPath();
-       context_2d.moveTo(0    ,q);
-       context_2d.lineTo(20000,q);
+       context_2d.moveTo(0   , q);
+       context_2d.lineTo(1000, q);
        context_2d.stroke();
    }
 
@@ -137,7 +137,7 @@
 
 <body>
 
-  <canvas id='canvas' width='2000' height='2000' style='margin:0;padding:0'>
+  <canvas id='canvas' width='1000' height='1000' style='margin:0;padding:0'>
   </canvas>
 
   <table style='position:fixed;left:100px;top:100px;background-color:#bbbb22'>
