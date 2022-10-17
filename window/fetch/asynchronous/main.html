@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>Asynchronous fetch</title>
+</head>
+<body>
+
+<div id='s3'>Wait for request completion…</div>
+<div id='s1'>Wait for request completion…</div>
+<div id='s2'>Wait for request completion…</div>
+
+<p>
+<div id='log'></div>
+
+<script>
+
+    function makeRequest(s) {
+
+       document.getElementById('log').innerHTML += new Date().toJSON() + ': Making request s=' + s + '<br>';
+
+       window.fetch('/service.php',
+       {
+           method : 'POST',
+           headers:{
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept'      : 'text/plain'
+           },
+           body   :  new URLSearchParams({
+                      'sleepSeconds': s
+                     })
+       }).then(r => {
+           if (r.status !== 200) {
+              alert(r.status);
+              return;
+           }
+           r.text().then(txt => {
+            // document.getElementById('s' + s).innerText = txt;
+               document.getElementById('s' + s).innerHTML = txt;
+          });
+       }).catch(e => {
+           alert('Request produced an error: ' + e);
+       });
+
+    }
+
+    makeRequest(3);
+    makeRequest(1);
+    makeRequest(2);
+
+</script>
+
+</body>
+</html>
