@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div id='out'></div>
+<video id='vid'/>
+<script>
+ 
+  function e(i) { return document.getElementById(i);}
+  function w(t) { e('out').innerHTML += t + '<br>'; }
+ 
+   w(navigator.getAutoplayPolicy(e('vid')));
+
+</script>
